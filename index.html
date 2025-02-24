@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental - IA en Educación</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/2.3.11/go.js"></script>
+    <style>
+        html, body { height: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; background-color: #282c34; color: white; }
+        #myDiagramDiv { width: 90vw; height: 80vh; border: 2px solid #61dafb; background-color: #1e1e1e; }
+        h2 { font-family: 'Comic Sans MS', cursive, sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+    <h2>🌟 Mapa Mental: Ética de la IA en Educación 🌟</h2>
+    <h5>🌟 Dev: Harold Zambrano 🌟</h5>
+    <div id="myDiagramDiv"></div>
+    <script>
+        function init() {
+            var $ = go.GraphObject.make;
+            var myDiagram = $(go.Diagram, "myDiagramDiv", {
+                "undoManager.isEnabled": true,
+                layout: $(go.TreeLayout, { angle: 90, layerSpacing: 40 })
+            });
+
+            myDiagram.nodeTemplate = $(go.Node, "Auto",
+                { locationSpot: go.Spot.Center },
+                $(go.Shape, "RoundedRectangle", { fill: "#61dafb", strokeWidth: 2, stroke: "white" }),
+                $(go.TextBlock, { margin: 10, font: "bold 14px Arial", stroke: "black" },
+                    new go.Binding("text", "key"))
+            );
+
+            myDiagram.linkTemplate = $(go.Link,
+                { curve: go.Link.Bezier, adjusting: go.Link.Stretch, relinkableFrom: true, relinkableTo: true },
+                $(go.Shape, { stroke: "#61dafb", strokeWidth: 2 }),
+                $(go.Shape, { toArrow: "Standard", fill: "#61dafb", stroke: "#61dafb" })
+            );
+
+            myDiagram.model = new go.TreeModel([
+                { key: "IA en Educación" },
+                { key: "Oportunidades", parent: "IA en Educación" },
+                { key: "Riesgos", parent: "IA en Educación" },
+                { key: "Principios Éticos", parent: "IA en Educación" },
+                { key: "Regulación", parent: "IA en Educación" },
+                { key: "Formación Docente", parent: "IA en Educación" },
+                { key: "Privacidad", parent: "Riesgos" },
+                { key: "Sesgos en datos", parent: "Riesgos" },
+                { key: "Personalización del aprendizaje", parent: "Oportunidades" },
+                { key: "Automatización de tareas", parent: "Oportunidades" },
+                { key: "Beneficencia", parent: "Principios Éticos" },
+                { key: "No maleficencia", parent: "Principios Éticos" },
+                { key: "Autonomía", parent: "Principios Éticos" },
+                { key: "Justicia", parent: "Principios Éticos" },
+                { key: "Explicabilidad", parent: "Principios Éticos" }
+            ]);
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
